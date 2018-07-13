@@ -6,8 +6,8 @@
 # Need to add logic to check for existing tables and not just assume DROP if one exists already...
 
 # Instructions:
-# Put this xls2sqlite.py in a directory with .xls output files from GDrive, and run it: python
-# '.\csv2sqlite.py dbOut.db' for example.
+# Put this xls2sqlite.py in a directory with .xls output files from GDrive, and run it
+# 'python .\csv2sqlite.py dbOut.db' for example.
 # Had issues figuring out encoding for Kamstrup .csv output, so used their XLS output converted to .csv by python for standard encoding which worked.
 # Program will create separate formatted .csv's for each .xls and will create a table in the db for each.
 
