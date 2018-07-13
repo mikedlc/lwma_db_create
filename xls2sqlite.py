@@ -48,7 +48,7 @@ for xlsfile in glob.glob(os.path.join(os.getcwd(), "*.xls")):
         if row[0]!="Serial number":
             writer.writerow(row)
     from_file.close()
-    # Remove .csv with dirty headers
+    # Remove temporary .csv with dirty headers
     os.remove(csvfile)
     to_file.close()
     print("Converted.")
