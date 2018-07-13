@@ -5,6 +5,12 @@
 # Table names cannot begin with numbers(?) so make sure they begin with a letter. Using 'USB_<date>.csv' for now.
 # Need to add logic to check for existing tables and not just assume DROP if one exists already...
 
+# Instructions:
+# Put this xls2sqlite.py in a directory with .xls output files from GDrive, and run it: python
+# '.\csv2sqlite.py dbOut.db' for example.
+# Had issues figuring out encoding for Kamstrup .csv output, so used their XLS output converted to .csv by python for standard encoding which worked.
+# Program will create separate formatted .csv's for each .xls and will create a table in the db for each.
+
 from __future__ import print_function
 import sqlite3
 import csv
@@ -15,7 +21,7 @@ import pdb
 import xlrd
 import shutil
 
-# Had issues figuring out encoding for Kamstrup .csv output, so used XLS output converted to .csv by python.
+
 print("\n\n\n\n*** Converting XLS files found in working dir to CSV***\n")
 
 for xlsfile in glob.glob(os.path.join(os.getcwd(), "*.xls")):
@@ -37,10 +43,12 @@ for xlsfile in glob.glob(os.path.join(os.getcwd(), "*.xls")):
     to_file = open(os.path.splitext(os.path.basename(csvfile))[0] + "_formatted.csv", 'w', newline="")
     to_file.write("Serial_number,Name,Meter_type,Consumption_type,Volume_V1,Receive_time,Volume_H,Operating_hour_counter,Minimum_flow_temperature_H,Minimum_external_temperature_H,Info,Avr_ext_temp_H\n")
     writer = csv.writer(to_file)
+    # write the meter readings in under the clean headers.
     for row in csv.reader(from_file):
         if row[0]!="Serial number":
             writer.writerow(row)
     from_file.close()
+    # Remove .csv with dirty headers
     os.remove(csvfile)
     to_file.close()
     print("Converted.")
