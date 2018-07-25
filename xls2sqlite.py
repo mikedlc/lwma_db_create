@@ -2,7 +2,7 @@
 #$ pip install --upgrade xlrd
 #$ pip install --upgrade cutplace
 
-# Table names cannot begin with numbers(?) so make sure they begin with a letter. Using 'USB_<date>.csv' for now.
+# Table names cannot begin with numbers(?) so make sure they begin with a letter. Using 'Radio_<date>.csv' for now.
 # Need to add logic to check for existing tables and not just assume DROP if one exists already...
 
 # Instructions:
